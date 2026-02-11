@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Denah Sekolah - SMK Negeri 11 Bandung</title>
+  <link rel="stylesheet" href="styledenah.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Denah Sekolah SMK Negeri 11 Bandung</h1>
+      <p>Lihat lokasi gedung, fasilitas, dan area penting di lingkungan sekolah</p>
+    </header>
+
+    <div class="map-container">
+      <!-- Ganti dengan path gambar denah Anda -->
+      <img 
+        src="denah-sekolah.png" 
+        alt="Denah Sekolah SMK Negeri 11 Bandung"
+        class="school-map"
+        id="schoolMap"
+      />
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: #FF6B6B;"></div>
+          <span>Gedung Utama</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #4ECDC4;"></div>
+          <span>Lapangan</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #FFE66D;"></div>
+          <span>Perpustakaan</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #1A535C;"></div>
+          <span>Workshop</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="home.html" class="btn-back">← Kembali ke Profil Sekolah</a>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 SMK Negeri 11 Bandung</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('schoolMap').addEventListener('click', function() {
+      if (this.style.transform === 'scale(1.5)') {
+        this.style.transform = 'scale(1)';
+        this.style.transition = 'transform 0.3s ease';
+      } else {
+        this.style.transform = 'scale(1.5)';
+        this.style.transition = 'transform 0.3s ease';
+      }
+    });
+  </script>
+</body>
+</html>
