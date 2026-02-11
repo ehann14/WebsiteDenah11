@@ -6,6 +6,7 @@
     <title>SMK Negeri 11 Bandung - Sekolah Unggulan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="stylehome.css">
 </head>
 <body>
@@ -39,7 +40,7 @@
     </nav>
 
     <div class="container">
-        <!-- Hero Section dengan Foto -->
+        <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-grid">
                 <div class="hero-text">
@@ -72,69 +73,178 @@
             </div>
         </section>
 
-        <!-- School Profile Section -->
+        <!-- School Profile Section - REDESAIN -->
         <section id="profile" class="school-profile">
             <div class="section-header">
                 <h2><i class="fas fa-school"></i> Profil Sekolah</h2>
-                <p>Informasi lengkap tentang SMK Negeri 11 Bandung</p>
+                <p>Menjelajahi sejarah, visi, dan misi SMK Negeri 11 Bandung</p>
             </div>
             
-            <div class="profile-grid">
-                <div class="profile-card">
-                    <div class="card-icon">
-                        <i class="fas fa-id-badge"></i>
-                    </div>
-                    <h3>Identitas Sekolah</h3>
-                    <ul class="info-list">
-                        <li><strong>Nama:</strong> SMK Negeri 11 Bandung</li>
-                        <li><strong>NPSN:</strong> 20216789</li>
-                        <li><strong>Status:</strong> Negeri</li>
-                        <li><strong>Akreditasi:</strong> <span class="badge badge-success">A (Unggul)</span></li>
-                        <li><strong>Tahun Berdiri:</strong> 1985</li>
-                        <li><strong>Kepala Sekolah:</strong> Eka Rachman, S. Kom., M. M. Pd.</li>
-                    </ul>
-                </div>
-                
-                <div class="profile-card">
-                    <div class="card-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Alamat & Kontak</h3>
-                    <ul class="info-list">
-                        <li><strong>Alamat:</strong> Jl. Raya Cilember, RT.01/RW.04, Sukaraja, Kec. Cicendo, Kota Bandung, Jawa Barat 40136</li>
-                        <li><strong>Telepon:</strong> (022) 6652442</li>
-                        <li><strong>Email:</strong> info@smkn11bandung.sch.id</li>
-                        <li><strong>Website:</strong> www.smkn11bandung.sch.id</li>
-                        <li><strong>Instagram:</strong> @smkn11bandung</li>
-                    </ul>
-                </div>
-                
-                <div class="profile-card">
-                    <div class="card-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Jam Operasional</h3>
-                    <div class="schedule">
-                        <div class="schedule-item">
-                            <i class="fas fa-calendar"></i>
-                            <div>
-                                <strong>Senin - Jumat</strong>
-                                <p>06.30 - 15.00 WIB</p>
+            <div class="profile-container">
+                <!-- Left Column - Informasi Dasar -->
+                <div class="profile-left">
+                    <!-- School Stats -->
+                    <div class="school-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1985</h3>
+                                <p>Tahun Berdiri</p>
                             </div>
                         </div>
-                        <div class="schedule-item">
-                            <i class="fas fa-calendar"></i>
-                            <div>
-                                <strong>Sabtu</strong>
-                                <p>07.00 - 12.00 WIB (Ekstrakurikuler)</p>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>A</h3>
+                                <p>Akreditasi Unggul</p>
                             </div>
                         </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1,200+</h3>
+                                <p>Siswa Aktif</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>85+</h3>
+                                <p>Tenaga Pendidik</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visi Misi -->
+                    <div class="vision-mission">
+                        <div class="vision-card">
+                            <div class="card-header">
+                                <i class="fas fa-bullseye"></i>
+                                <h3>Visi Sekolah</h3>
+                            </div>
+                            <p class="vision-text">
+                                Menjadi lembaga pendidikan kejuruan yang unggul dalam prestasi, inovatif dalam pembelajaran, dan berwawasan global untuk menghasilkan lulusan yang kompeten dan berakhlak mulia.
+                            </p>
+                        </div>
+
+                        <div class="mission-card">
+                            <div class="card-header">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Misi Sekolah</h3>
+                            </div>
+                            <ul class="mission-list">
+                                <li><i class="fas fa-check-circle"></i> Menyelenggarakan pendidikan kejuruan yang berkualitas dan relevan dengan kebutuhan industri</li>
+                                <li><i class="fas fa-check-circle"></i> Mengembangkan kompetensi peserta didik sesuai standar kompetensi kerja nasional</li>
+                                <li><i class="fas fa-check-circle"></i> Membentuk karakter peserta didik yang berakhlak mulia dan berjiwa wirausaha</li>
+                                <li><i class="fas fa-check-circle"></i> Menjalin kerjasama dengan dunia usaha dan dunia industri untuk peningkatan mutu pendidikan</li>
+                                <li><i class="fas fa-check-circle"></i> Mengembangkan budaya mutu dan inovasi dalam penyelenggaraan pendidikan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Detail & Lokasi -->
+                <div class="profile-right">
+                    <!-- School Info Card -->
+                    <div class="school-info-card">
+                        <div class="info-header">
+                            <i class="fas fa-id-badge"></i>
+                            <h3>Identitas Sekolah</h3>
+                        </div>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Nama Sekolah</span>
+                                <span class="info-value">SMK Negeri 11 Bandung</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">NPSN</span>
+                                <span class="info-value">20216789</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Status</span>
+                                <span class="info-value">Negeri</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Akreditasi</span>
+                                <span class="info-badge badge-success">A (Unggul)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Tahun Berdiri</span>
+                                <span class="info-value">1985</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Kepala Sekolah</span>
+                                <span class="info-value">Eka Rachman, S. Kom., M. M. Pd.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address Card -->
+                    <div class="address-card">
+                        <div class="card-header">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Alamat & Kontak</h3>
+                        </div>
+                        <div class="address-grid">
+                            <div class="address-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <span class="address-label">Alamat</span>
+                                    <p class="address-text">Jl. Raya Cilember, RT.01/RW.04, Sukaraja, Kec. Cicendo, Kota Bandung, Jawa Barat 40136</p>
+                                </div>
+                            </div>
+                            <div class="address-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <span class="address-label">Telepon</span>
+                                    <p class="address-text">(022) 6652442</p>
+                                </div>
+                            </div>
+                            <div class="address-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <span class="address-label">Email</span>
+                                    <p class="address-text">info@smkn11bandung.sch.id</p>
+                                </div>
+                            </div>
+                            <div class="address-item">
+                                <i class="fas fa-globe"></i>
+                                <div>
+                                    <span class="address-label">Website</span>
+                                    <p class="address-text">www.smkn11bandung.sch.id</p>
+                                </div>
+                            </div>
+                            <div class="address-item">
+                                <i class="fab fa-instagram"></i>
+                                <div>
+                                    <span class="address-label">Instagram</span>
+                                    <p class="address-text">@smkn11bandung</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Card -->
+                    <div class="map-card">
+                        <div class="card-header">
+                            <i class="fas fa-location-crosshairs"></i>
+                            <h3>Lokasi Sekolah</h3>
+                        </div>
+                        <div id="schoolMap" class="map-container"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery Section - BARU -->
+        <!-- Gallery Section -->
         <section id="gallery" class="gallery">
             <div class="section-header">
                 <h2><i class="fas fa-images"></i> Galeri Kegiatan</h2>
@@ -187,45 +297,6 @@
             </div>
         </section>
 
-        <!-- Facilities Section -->
-        <section id="facilities" class="facilities">
-            <div class="section-header">
-                <h2><i class="fas fa-building"></i> Fasilitas Sekolah</h2>
-                <p>Fasilitas lengkap untuk mendukung kegiatan belajar mengajar</p>
-            </div>
-            
-            <div class="facilities-grid">
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <h3>Perpustakaan Digital</h3>
-                    <p>Koleksi buku cetak dan digital dengan ruang baca multimedia</p>
-                </div>
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Workshop Kejuruan</h3>
-                    <p>Bengkel RPL, TKJ, dan multimedia dengan peralatan terbaru</p>
-                </div>
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-basketball-ball"></i>
-                    </div>
-                    <h3>Lapangan Olahraga</h3>
-                    <p>Lapangan futsal, basket, dan voli</p>
-                </div>
-                <div class="facility-card">
-                    <div class="facility-icon">
-                        <i class="fas fa-laptop"></i>
-                    </div>
-                    <h3>Laboratorium Komputer</h3>
-                    <p>Ruang komputer dengan jaringan internet dan wifi area</p>
-                </div>
-            </div>
-        </section>
-
         <!-- Footer -->
         <footer>
             <div class="footer-content">
@@ -240,6 +311,7 @@
         </footer>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Navigation Toggle
         document.getElementById('navToggle').addEventListener('click', function() {
@@ -260,6 +332,18 @@
                     });
                 }
             });
+        });
+
+        // Initialize Map
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = L.map('schoolMap').setView([-6.8848, 107.5922], 15);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            const marker = L.marker([-6.8848, 107.5922]).addTo(map);
+            marker.bindPopup('<b>SMK Negeri 11 Bandung</b><br>Jl. Raya Cilember, Cicendo').openPopup();
         });
     </script>
 </body>
