@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Konfigurasi panorama - ganti dengan path gambar panorama Anda
     const panoramaConfig = {
         "type": "equirectangular",
-        "panorama": "asset/panorama.jpg", // Ganti dengan path gambar panorama 360° Anda
+        "panorama": "asset/Tangga_spw.jpg", // Ganti dengan path gambar panorama 360° Anda
         "autoLoad": true,
         "showZoomCtrl": true,
         "showFullscreenCtrl": true,
