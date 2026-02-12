@@ -1,80 +1,89 @@
-// Inisialisasi Pannellum Viewer
 document.addEventListener('DOMContentLoaded', function() {
-    // Konfigurasi panorama - ganti dengan path gambar panorama Anda
-    const panoramaConfig = {
+    // Cek apakah elemen panorama ada
+    const panoramaEl = document.getElementById('panorama');
+    if (!panoramaEl) return;
+
+    // Inisialisasi Pannellum dengan gambar panorama
+    // ⚠️ GANTI 'asset/panorama.jpg' dengan path gambar 360° Anda
+    const viewer = pannellum.viewer(panoramaEl, {
         "type": "equirectangular",
-        "panorama": "asset/panoramajpg", // Ganti dengan path gambar panorama 360° Anda
+        "panorama": "asset/panorama.jpg", // ← WAJIB GANTI DENGAN GAMBAR ANDA
         "autoLoad": true,
         "showZoomCtrl": true,
         "showFullscreenCtrl": true,
         "compass": true,
-        "title": "Lingkungan Sekolah SMK Negeri 11 Bandung",
-        "author": "SMK Negeri 11 Bandung",
+        "title": "Lingkungan SMK Negeri 11 Bandung",
         "horizonPitch": 0,
-        "horizonRoll": 0,
-        "autoRotate": -2,
+        "autoRotate": -1.5,
         "autoRotateInactivityDelay": 5000,
         "mouseZoom": true,
-        "doubleClickZoom": true,
         "friction": 0.15,
-        "keyboardZoom": true
-    };
-
-    // Inisialisasi viewer
-    let viewer;
-    
-    try {
-        viewer = pannellum.viewer('panorama', panoramaConfig);
-        
-        // Event listener untuk hotspots (opsional)
-        viewer.on('load', function() {
-            console.log('Panorama loaded successfully');
-        });
-        
-        viewer.on('error', function(error) {
-            console.error('Panorama error:', error);
-            // Fallback jika panorama gagal dimuat
-            document.getElementById('panorama').style.display = 'none';
-            document.querySelector('.school-map').style.marginTop = '0';
-        });
-    } catch (error) {
-        console.error('Pannellum initialization error:', error);
-        document.getElementById('panorama').style.display = 'none';
-    }
-
-    // Fungsi zoom untuk denah tradisional
-    document.getElementById('schoolMap').addEventListener('click', function() {
-        if (this.style.transform === 'scale(1.5)') {
-            this.style.transform = 'scale(1)';
-            this.style.transition = 'transform 0.3s ease';
-        } else {
-            this.style.transform = 'scale(1.5)';
-            this.style.transition = 'transform 0.3s ease';
-        }
+        "backgroundColor": [26, 83, 92] // Warna teal sesuai preferensi user
     });
 
-    // Hotspots untuk lokasi penting (opsional)
-    const hotspots = [
-        {
-            "pitch": 0,
-            "yaw": 0,
+    // Hotspots contoh (sesuaikan koordinat sesuai gambar panorama Anda)
+    viewer.on('load', function() {
+        viewer.addHotSpot({
+            "pitch": 5,
+            "yaw": 10,
             "type": "info",
             "text": "Gedung Utama",
-            "URL": "#"
-        },
-        {
-            "pitch": 10,
-            "yaw": 30,
+            "createTooltipFunc": hotspotTooltip,
+            "createTooltipArgs": "Gedung Utama"
+        });
+        
+        viewer.addHotSpot({
+            "pitch": -5,
+            "yaw": -30,
             "type": "info",
             "text": "Lapangan Olahraga",
-            "URL": "#"
-        }
-    ];
+            "createTooltipFunc": hotspotTooltip,
+            "createTooltipArgs": "Lapangan Olahraga"
+        });
+    });
 
-    // Tambahkan hotspots jika viewer berhasil diinisialisasi
-    if (viewer) {
-        hotspots.forEach(function(hotspot) {
-            viewer.addHotSpot(hotspot);
+    // Fungsi tooltip custom
+    function hotspotTooltip(hotSpotDiv, args) {
+        hotSpotDiv.classList.add('custom-tooltip');
+        hotSpotDiv.innerHTML = args;
+        hotSpotDiv.style.backgroundColor = '#1A535C';
+        hotSpotDiv.style.color = 'white';
+        hotSpotDiv.style.padding = '8px 12px';
+        hotSpotDiv.style.borderRadius = '6px';
+        hotSpotDiv.style.position = 'absolute';
+        hotSpotDiv.style.transform = 'translate(-50%, -100%)';
+        hotSpotDiv.style.top = '-10px';
+        hotSpotDiv.style.left = '50%';
+        hotSpotDiv.style.whiteSpace = 'nowrap';
+        hotSpotDiv.style.fontSize = '14px';
+        hotSpotDiv.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+    }
+
+    // Zoom untuk denah tradisional
+    const schoolMap = document.getElementById('schoolMap');
+    if (schoolMap) {
+        schoolMap.addEventListener('click', function() {
+            if (this.style.transform === 'scale(1.5)') {
+                this.style.transform = 'scale(1)';
+            } else {
+                this.style.transform = 'scale(1.5)';
+            }
+            this.style.transition = 'transform 0.3s ease';
         });
     }
+
+    // Fallback jika gambar panorama tidak ditemukan
+    viewer.on('error', function(error) {
+        console.error('Error loading panorama:', error);
+        panoramaEl.innerHTML = '<div class="panorama-error">Gambar panorama tidak ditemukan. Pastikan file "asset/panorama.jpg" tersedia.</div>';
+        panoramaEl.style.backgroundColor = '#ff6b6b';
+        panoramaEl.style.color = 'white';
+        panoramaEl.style.display = 'flex';
+        panoramaEl.style.alignItems = 'center';
+        panoramaEl.style.justifyContent = 'center';
+        panoramaEl.style.fontWeight = 'bold';
+        panoramaEl.style.fontSize = '16px';
+        panoramaEl.style.textAlign = 'center';
+        panoramaEl.style.padding = '20px';
+    });
 });

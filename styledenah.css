@@ -37,13 +37,20 @@ header h1 {
   position: relative;
 }
 
+#panorama {
+  width: 100%;
+  height: 450px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  background: #f0f0f0;
+}
+
 .school-map {
   width: 100%;
   display: block;
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin-top: 20px;
 }
 
 .school-map:hover {
@@ -63,6 +70,7 @@ header h1 {
   align-items: center;
   gap: 8px;
   font-size: 0.95rem;
+  color: #333;
 }
 
 .legend-color {
@@ -95,18 +103,18 @@ footer {
   opacity: 0.9;
 }
 
-/* Pannellum Custom Styling */
-#panorama {
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.pannellum-container {
-  border-radius: 12px !important;
-}
-
-.pannellum-load-button {
-  background: #2a5298 !important;
-  border: none !important;
+/* Responsive */
+@media (max-width: 768px) {
+  #panorama {
+    height: 300px;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .legend {
+    flex-direction: column;
+    align-items: center;
+  }
 }
