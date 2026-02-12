@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ⚠️ GANTI 'asset/panorama.jpg' dengan path gambar 360° Anda
     const viewer = pannellum.viewer(panoramaEl, {
         "type": "equirectangular",
-        "panorama": "asset/panorama.jpg", // ← WAJIB GANTI DENGAN GAMBAR ANDA
+        "panorama": "asset/Otkp11.jpg", // ← WAJIB GANTI DENGAN GAMBAR ANDA
         "autoLoad": true,
         "showZoomCtrl": true,
         "showFullscreenCtrl": true,
@@ -72,18 +72,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fallback jika gambar panorama tidak ditemukan
-    viewer.on('error', function(error) {
-        console.error('Error loading panorama:', error);
-        panoramaEl.innerHTML = '<div class="panorama-error">Gambar panorama tidak ditemukan. Pastikan file "asset/panorama.jpg" tersedia.</div>';
-        panoramaEl.style.backgroundColor = '#ff6b6b';
-        panoramaEl.style.color = 'white';
-        panoramaEl.style.display = 'flex';
-        panoramaEl.style.alignItems = 'center';
-        panoramaEl.style.justifyContent = 'center';
-        panoramaEl.style.fontWeight = 'bold';
-        panoramaEl.style.fontSize = '16px';
-        panoramaEl.style.textAlign = 'center';
-        panoramaEl.style.padding = '20px';
-    });
 });
